@@ -1,0 +1,24 @@
+{
+  "message": "hello i18n !!",
+  "menu":{
+    "home":"主页",
+    "broadcast":"直播",
+    "ondemand":"点播",
+    "histroy":"历史记录"
+  },
+  "broadcast":{
+    "hotTitle":"推荐栏目",
+    "programsTitle":"电视节目单",
+    "nextTitle":"即将播出"
+  },
+  "footer":{
+    "logoTitle":"Azhara",
+    "description":"免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。若侵犯了您的权益，请发邮件通知站长，收到邮件后24小时内删除。",
+    "moreLink":"更多链接"
+  },
+  "loginDialog":{
+    "remember":"是否记住密码？",
+    "buttonText":"登录",
+    "title":"用户登录"
+  }
+}

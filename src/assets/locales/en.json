@@ -1,0 +1,13 @@
+{
+  "message": "hello i18n !!",
+  "menu":{
+    "home":"Home",
+    "broadcast":"Live",
+    "ondemand":"On Demand",
+    "histroy":"history"
+  },
+  "broadcast":{
+    "hotTitle":"What on",
+    "programsTitle":"TV-guide"
+  }
+}

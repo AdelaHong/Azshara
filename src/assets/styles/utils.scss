@@ -1,0 +1,283 @@
+@function unit($PX) {
+    @if $unit-name==rem {
+        @return $PX/$unit-size+$unit-name;
+    }
+
+    @if $unit-name==px {
+        @return $PX+$unit-name
+    }
+}
+
+/* BEM support Func
+ -------------------------- */
+
+@function selectorToString($selector) {
+    $selector: inspect($selector);
+    $selector: str-slice($selector, 2, -2);
+    @return $selector;
+}
+
+@function containsModifier($selector) {
+    $selector: selectorToString($selector);
+
+    @if str-index($selector, $modifier-separator) {
+        @return true;
+    }
+
+    @else {
+        @return false;
+    }
+}
+
+@function containWhenFlag($selector) {
+    $selector: selectorToString($selector);
+
+    @if str-index($selector, '.'+ $state-prefix) {
+        @return true
+    }
+
+    @else {
+        @return false
+    }
+}
+
+@function containPseudoClass($selector) {
+    $selector: selectorToString($selector);
+
+    @if str-index($selector, ':') {
+        @return true
+    }
+
+    @else {
+        @return false
+    }
+}
+
+@function hitAllSpecialNestRule($selector) {
+    @return containsModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
+}
+
+
+// size 12,14,16,18,20,24,32,36,56,72
+@mixin S($size) {
+    height: unit($size);
+    width: unit($size);
+}
+
+@mixin M($mask-number) {
+    @if $mask-number==1 {
+        background: linear-gradient(to bottom, $C09, $C11);
+    }
+
+    @else if $mask-number==2 {
+        background: linear-gradient(to bottom, $C11, $C09, $C08);
+    }
+
+    @else if $mask-number==3 {
+        background-color: $C08;
+    }
+
+    @else if $mask-number==4 {
+        background: linear-gradient(to bottom, $C13, $C11);
+    }
+
+    @else if $mask-number==5 {
+        box-shadow: 0.4em 10px 0.9em 0em #1f1f1f;
+    }
+}
+
+// font rule
+@mixin setFontBase($font-size, $font-color, $is-bold:false) {
+    font-size: unit($font-size);
+    color: $font-color;
+
+    @if $is-bold {
+        font-weight: bold;
+    }
+}
+
+@mixin T($font-number, $font-color:$C31) {
+    @if $font-number==11 {
+        @include setFontBase(32, $font-color, true);
+    }
+
+    @else if $font-number==12 {
+        @include setFontBase(32, $font-color);
+    }
+
+    @else if $font-number==13 {
+        @include setFontBase(24, $font-color);
+    }
+
+    @else if $font-number==14 {
+        @include setFontBase(20, $font-color);
+    }
+
+    @else if $font-number==15 {
+        @include setFontBase(20, $font-color, true);
+    }
+
+    @else if $font-number==16 {
+        @include setFontBase(18, $font-color, true);
+    }
+
+    @else if $font-number==17 {
+        @include setFontBase(16, $font-color, true);
+    }
+
+    @else if $font-number==18 {
+        @include setFontBase(14, $font-color);
+    }
+
+    @else if $font-number==20 {
+        @include setFontBase(48, $font-color, true);
+    }
+
+    @else if $font-number==21 {
+        @include setFontBase(36, $C36, true);
+    }
+
+    @else if $font-number==22 {
+        @include setFontBase(32, $font-color, true);
+    }
+
+    @else if $font-number==23 {
+        @include setFontBase(24, $font-color, true);
+    }
+
+    @else if $font-number==24 {
+        @include setFontBase(24, $C36);
+    }
+
+    @else if $font-number==25 {
+        @include setFontBase(20, $font-color, true);
+    }
+
+    @else if $font-number==26 {
+        @include setFontBase(20, $font-color);
+    }
+
+    @else if $font-number==27 {
+        @include setFontBase(18, $font-color);
+    }
+
+    @else if $font-number==28 {
+        @include setFontBase(16, $font-color, true);
+    }
+
+    @else if $font-number==29 {
+        @include setFontBase(16, $font-color);
+        line-height: unit(24);
+    }
+
+    @else if $font-number==30 {
+        @include setFontBase(16, $font-color);
+        line-height: unit(20);
+        font-style: italic;
+    }
+
+    @else if $font-number==31 {
+        @include setFontBase(14, $font-color, true);
+    }
+
+    @else if $font-number==32 {
+        @include setFontBase(14, $font-color);
+        line-height: unit(20);
+    }
+
+    @else if $font-number==33 {
+        @include setFontBase(14, $font-color);
+        line-height: unit(20);
+        font-style: italic;
+    }
+
+    @else if $font-number==34 {
+        @include setFontBase(14, $font-color);
+        line-height: unit(12);
+    }
+}
+
+/*
+BEM
+*/
+
+@mixin b($block) {
+    $B: $namespace+'-'+$block !global;
+
+    .#{$B} {
+        @content;
+    }
+}
+
+@mixin m($modifier) {
+    $selector: &;
+    $currentSelector: "";
+
+    @each $unit in $modifier {
+        $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ","};
+    }
+
+    @at-root {
+        #{$currentSelector} {
+            @content;
+        }
+    }
+}
+
+@mixin e($element) {
+    $E: $element !global;
+    $selector: &;
+    $currentSelector: "";
+
+    @each $unit in $element {
+        $currentSelector: #{$currentSelector + "." + $B + $separator + $unit + ","};
+    }
+
+    @if hitAllSpecialNestRule($selector) {
+        @at-root {
+            #{$selector} {
+                #{$currentSelector} {
+                    @content;
+                }
+            }
+        }
+    }
+
+    @else {
+        @at-root {
+            #{$currentSelector} {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin when($state) {
+    @at-root {
+        &.#{$state-prefix + $state} {
+            @content;
+        }
+    }
+}
+
+@mixin user-select($value) {
+    -moz-user-select: $value;
+    -webkit-user-select: $value;
+    -ms-user-select: $value;
+}
+
+@mixin rc($rc-number) {
+    @if $rc-number==1 {
+        border-radius: unit(2);
+    }
+
+    @if $rc-number==2 {
+        border-radius: unit(18);
+    }
+}
+
+@mixin text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
