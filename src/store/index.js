@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import HEADER from './modules/Header'
-import BROADCAST from './modules/Broadcast'
+import BROADCAST from './modules/LiveTV'
 import FOOTER from './modules/Footer'
 import CHANNEL from './modules/Channel'
 import HOME from './modules/Home'
 import DIALOG from './modules/Dialog'
+import MY from './modules/My'
 Vue.use(Vuex)
 
 let messageTimer = null
@@ -17,7 +18,8 @@ export default new Vuex.Store({
     BROADCAST,
     FOOTER,
     CHANNEL,
-    DIALOG
+    DIALOG,
+    MY
   },
   state: {
     bgroundUrl: '',

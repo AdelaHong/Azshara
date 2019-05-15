@@ -4,7 +4,18 @@
     "home":"主页",
     "broadcast":"直播",
     "ondemand":"点播",
-    "histroy":"历史记录"
+    "histroy":"历史记录",
+    "contentManager":"菜单",
+    "favoriteVieo":"收藏视频",
+    "favoriteChannel":"收藏频道",
+    "lockedChannel":"已锁定频道",
+    "reminders":"提醒",
+    "purchases":"订购",
+    "recording":"录制",
+    "profiles":"账号",
+    "deviceName":"设备名称",
+    "setting":"设置",
+    "logout":"注销"
   },
   "broadcast":{
     "hotTitle":"推荐栏目",

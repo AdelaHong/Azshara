@@ -13,7 +13,7 @@
       <span class="info">{{$t('loginDialog.remember')}}</span>
     </div>
     <div class="moki-login-dialog--action">
-      <mo-button type="primary">{{$t('loginDialog.buttonText')}}</mo-button>
+      <mo-button class="login-button" type="primary">{{$t('loginDialog.buttonText')}}</mo-button>
     </div>
   </div>
 </template>
@@ -86,6 +86,9 @@ export default {
   @include m(action) {
     text-align: center;
     margin-bottom: unit(35);
+    .login-button{
+      width: unit(300);
+    }
   }
 }
 </style>

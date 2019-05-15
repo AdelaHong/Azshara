@@ -1,8 +1,8 @@
 <template>
-    <div class="moki-home">
-      <recommend-poster :title="hotsView.title" :posters="hotsView.views" />
-       <recommend-poster :title="hotsView.title" :posters="hotsView.views" />
-    </div>
+  <div class="moki-home">
+    <recommend-poster :title="hotsView.title" :posters="hotsView.views"/>
+    <recommend-poster :title="hotsView.title" :posters="hotsView.views"/>
+  </div>
 </template>
 <script>
 import { mapMutations, mapActions, mapState } from 'vuex'
@@ -38,5 +38,4 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 </style>

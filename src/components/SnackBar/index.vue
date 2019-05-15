@@ -19,9 +19,16 @@ export default {
 <style lang="scss" scoped>
 @include b(snack-bar) {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   left: 50%;
-  padding: unit(20);
+  max-width: unit(960);
+  min-width: unit(360);
+  max-height: unit(104);
+  min-height: unit(56);
+  padding: 0 unit(30);
   transform: translateX(-50%);
   background-color: $C14;
   @include rc(1);

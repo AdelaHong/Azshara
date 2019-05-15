@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home'
 import PageNotFound from './views/NotFound'
+import MyLayout from './views/My'
 
 Vue.use(Router)
 
@@ -23,23 +24,27 @@ const router = new Router({
     {
       path: '/broadcast',
       name: 'broadcast',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "broadcast" */ './views/Broadcast')
+      component: () => import(/* webpackChunkName: "broadcast" */ './views/LiveTV')
     },
     {
       path: '/detail/:programId',
       name: 'detail',
-      component: () => import(/* webpackChunkName: "programDetail" */'./views/ProgramDetail')
+      component: () => import(/* webpackChunkName: "programDetail" */'./views/LiveTV/ProgramDetail.vue')
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/',
+      component: MyLayout,
+      children: [{
+        path: '/user-info',
+        name: 'userInfo',
+        component: () => import(/* webpackChunkName: "UserInfo" */ './views/My/UserInfo.vue')
+      }]
+
     },
     {
       path: '*',

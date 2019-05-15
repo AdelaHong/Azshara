@@ -80,8 +80,6 @@ export default {
     }),
     userLogin () {
       this.setMenuStatus(false)
-      console.log(1111)
-      this.switchloginDialog(true)
     }
   },
   created () {
