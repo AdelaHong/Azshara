@@ -18,7 +18,7 @@ export default {
   components: {
     RecommendPoster
   },
-  created () {
+  mounted () {
     this.chaneHeaderStatus(false)
     this.setBannerStatus(true)
     this.getHomeHubPresenter()

@@ -104,6 +104,7 @@ export default {
 <style lang="scss" scoped>
 @include when(chosen) {
   transform: scale(1.1);
+  filter: brightness(100%) !important;
 }
 @include b(banner) {
   position: relative;
@@ -184,9 +185,10 @@ export default {
             margin-bottom: unit(8);
             transition: $transition-time;
             cursor: pointer;
-
+            filter: brightness(50%);
             &:hover {
               transform: scale(1.1);
+              filter: brightness(50%);
             }
           }
         }

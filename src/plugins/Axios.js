@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-  install(Vue, opt = {}) {
+  install (Vue, opt = {}) {
     console.log(opt.baseURL)
     const service = axios.create({
       baseURL: opt.baseURL, // api 的 base_url

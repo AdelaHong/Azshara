@@ -1,34 +1,29 @@
 # Azshara
 
-## Project setup
+## 项目安装
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
+### 编译与构建
 ```
 yarn run build
 ```
 
-### Run your tests
+### 运行测试
 ```
 yarn run test
 ```
 
-### Lints and fixes files
+### 解决代码格式
 ```
 yarn run lint
 ```
 
-### Run your unit tests
+### 运行 unit 测试类
 ```
 yarn run test:unit
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 通用配置
+参照 [Configuration Reference](https://cli.vuejs.org/config/).

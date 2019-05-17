@@ -1,4 +1,4 @@
-import hubApi from '@api/hub'
+import HubService from '@services/HubService'
 
 const state = {
   promoViews: [],
@@ -33,7 +33,7 @@ const mutations = {
 
 const actions = {
   async getHomeHubPresenter ({ commit }) {
-    const { groups } = await hubApi.getHubPresenter('home')
+    const { groups } = await HubService.getHubPresenter('home')
     commit('SET_PROMO_VIEWS', groups)
     commit('SET_HOT_VIEWS', groups)
   }

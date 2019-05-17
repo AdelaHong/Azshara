@@ -53,8 +53,9 @@ module.exports = {
       .set('@styles', resolve('src/assets/styles'))
       .set('@store', resolve('src/store/'))
       .set('@components', resolve('src/components/'))
-      .set('@api', resolve('src/api'))
+      .set('@services', resolve('src/services'))
       .set('@assets', resolve('src/assets'))
+      .set('@utils', resolve('src/utils'))
 
     config.when(process.env.NODE_ENV === 'development',
       config => config.devtool('cheap-source-map')

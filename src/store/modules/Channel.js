@@ -1,5 +1,5 @@
 
-import channelApi from '@api/channel'
+import ChannelService from '@services/ChannelService'
 export default {
   namespaced: true,
   state: {
@@ -22,7 +22,7 @@ export default {
   },
   actions: {
     async getAllChannel ({ commit }) {
-      const { channelList } = await channelApi.getAllChannels()
+      const { channelList } = await ChannelService.getAllChannels()
       commit('SET_CHANNEL', channelList)
       commit('SET_HUB_CHANNELS', channelList)
     }

@@ -1,6 +1,6 @@
 
-import hubApi from '@api/hub'
-import channelApi from '@api/channel'
+import HubService from '@services/HubService'
+import ChannelService from '@services/ChannelService'
 export default {
   namespaced: true,
   state: {
@@ -48,10 +48,6 @@ export default {
           subname: item.channelId
         }
       })
-      const a = 'dsadasd'
-      if (a === 'dsadsadas') {
-
-      }
       state.nextView.largeTile = viewTile.slice(0, 2)
       state.nextView.mediumTile = viewTile.slice(2, 4)
       state.nextView.smallTile = viewTile.slice(4, 6)
@@ -104,11 +100,11 @@ export default {
      * @param {*} param0
      */
     async getTvHubPresenter ({ commit }) {
-      let { groups } = await hubApi.getHubPresenter('live')
+      let { groups } = await HubService.getHubPresenter('live')
       const { tiles } = groups.find(item => item.paneType === 'genres')
       tiles.forEach(async element => {
         const { action: { params: { targetId } } } = element
-        const recommend = await hubApi.getRecommendPresenter(targetId)
+        const recommend = await HubService.getRecommendPresenter(targetId)
         let recommendTiles = recommend.groups[0]
         commit('SET_RECOMMEND_VIEW', recommendTiles)
       })
@@ -117,9 +113,9 @@ export default {
     },
 
     async getProgramsByChannel ({ commit }) {
-      let { channelList } = await channelApi.getAllChannels()
+      let { channelList } = await ChannelService.getAllChannels()
       let channelIds = channelList.map(item => item.contentId)
-      let { playbillList } = await channelApi.getPlaybillByChannelId(channelIds)
+      let { playbillList } = await ChannelService.getPlaybillByChannelId(channelIds)
       commit('SET_PROGRAM_LIST', {
         channelList,
         playbillList
