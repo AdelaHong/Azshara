@@ -1,6 +1,11 @@
 <template>
   <div class="moki-my">
-    <my-menu :basicInfo="basicInfo" :menuInfos="menuInfos"/>
+    <my-menu
+      :basicInfo="basicInfo"
+      :menuInfos="menuInfos"
+      :chosenMenu="currentMenuId"
+      @click="chosenId($event)"
+    />
     <div class="moki-my__content">
       <router-view></router-view>
     </div>
@@ -8,7 +13,7 @@
 </template>
 <script>
 import MyMenu from './components/MyMenu.vue'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'my',
   components: {
@@ -24,8 +29,17 @@ export default {
   }),
   computed: {
     ...mapState('MY', {
-      menuInfos: s => s.menuInfoKeys
+      menuInfos: s => s.menuInfoKeys,
+      currentMenuId: s => s.currentMenuId
     })
+  },
+  methods: {
+    ...mapMutations('MY', {
+      setMenuActive: 'SET_MENU_ACTIVE'
+    }),
+    chosenId (evt) {
+      this.setMenuActive(evt)
+    }
   }
 }
 </script>
@@ -33,5 +47,6 @@ export default {
 <style lang="scss" scoped>
 @include b(my) {
   margin-top: unit(80);
+  display: flex;
 }
 </style>

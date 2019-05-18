@@ -209,6 +209,14 @@ BEM
     }
 }
 
+@mixin component($block) {
+    $B: 'c-'+$block !global;
+
+    .#{$B} {
+        @content;
+    }
+}
+
 @mixin m($modifier) {
     $selector: &;
     $currentSelector: "";

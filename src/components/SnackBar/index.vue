@@ -1,5 +1,5 @@
 <template>
-  <div class="moki-snack-bar" v-if="isShowMessage">
+  <div class="c-snack-bar" v-if="isShowMessage">
     <span class="messages">{{messages}}</span>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@include b(snack-bar) {
+@include component(snack-bar) {
   position: fixed;
   display: flex;
   justify-content: center;

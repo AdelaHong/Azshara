@@ -16,7 +16,12 @@ const state = {
         id: 'LockedChannel',
         name: 'menu.lockedChannel',
         iconName: 'lock'
-      },
+      }
+    ]
+  },
+  {
+    firstMenu: '',
+    secondMenu: [
       {
         id: 'Reminders',
         name: 'menu.reminders',
@@ -30,7 +35,12 @@ const state = {
         id: 'Recording',
         name: 'menu.recording',
         iconName: 'record-circle'
-      },
+      }
+    ]
+  },
+  {
+    firstMenu: '',
+    secondMenu: [
       {
         id: 'Profiles',
         name: 'menu.profiles',
@@ -52,11 +62,15 @@ const state = {
         iconName: 'login-circle'
       }
     ]
-  }]
+  }
+  ],
+  currentMenuId: ''
 }
 
 const mutations = {
-
+  SET_MENU_ACTIVE (state, id) {
+    state.currentMenuId = id
+  }
 }
 
 const actions = {

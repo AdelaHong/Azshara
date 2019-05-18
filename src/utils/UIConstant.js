@@ -6,5 +6,6 @@ export default {
     INFO: 4,
     DEBUG: 5,
     OFF: 6
-  }
+  },
+  MENU_BASIC: 'menuBasic'
 }

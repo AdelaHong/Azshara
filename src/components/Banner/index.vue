@@ -1,18 +1,18 @@
 <template>
-  <div class="moki-banner">
+  <div class="c-banner">
     <div
-      class="moki-banner--picture"
+      class="c-banner--picture"
       :style="{'background-image':'url('+currentCarousel.backgroundUrl+')'}"
     ></div>
-    <div class="moki-banner--mask">
+    <div class="c-banner--mask">
       <div class="container">
-        <div class="moki-banner__info">
+        <div class="c-banner__info">
           <div class="title">{{currentCarousel.title}}</div>
           <div class="subtitle">{{currentCarousel.subtitle}}</div>
           <div class="meta">{{currentCarousel.meta}}</div>
           <mo-button type="primary">{{currentCarousel.buttonText}}</mo-button>
         </div>
-        <div class="moki-banner__dot-posters">
+        <div class="c-banner__dot-posters">
           <div class="top-arrow"  @click="switchPicture(SWITCH_DIR.UP)">
             <mo-icon name="arrow-up-s" type="fill" :size="24"></mo-icon>
           </div>
@@ -106,7 +106,7 @@ export default {
   transform: scale(1.1);
   filter: brightness(100%) !important;
 }
-@include b(banner) {
+@include component(banner) {
   position: relative;
   height: unit(580);
   background-color: $C06;
