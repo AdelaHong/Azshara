@@ -9,7 +9,7 @@
     "staging": "vue-cli-service serve --mode production",
     "start": "vue-cli-service serve",
     "dev:mock": "vue-cli-service serve --mode mock",
-    "dev":"vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
     "preview": "serve ./dist"
   },
@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "dayjs": "^1.8.13",
-    "moko": "./moko-0.1.4.tgz",
+    "moko": "file:moko-0.1.5.tgz",
     "remixicon": "^1.1.2",
     "vue": "^2.6.10",
     "vue-i18n": "^8.10.0",

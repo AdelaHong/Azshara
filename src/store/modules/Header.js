@@ -15,8 +15,8 @@ export default {
         url: '/broadcast'
       },
       {
-        name: 'menu.ondemand',
-        url: '/ondemand'
+        name: 'menu.onDemand',
+        url: '/onDemand'
       }
     ]
   },
@@ -28,14 +28,14 @@ export default {
       state.isShowMenu = status
     },
 
-    scrollLinster (state) {
-      let debouce
+    SCROLL_LISTENER (state) {
+      let debounce
       document.addEventListener('scroll', () => {
         let scrollTop = document.documentElement.scrollTop
           ? document.documentElement.scrollTop
           : document.body.scrollTop
-        clearTimeout(debouce)
-        debouce = setTimeout(() => {
+        clearTimeout(debounce)
+        debounce = setTimeout(() => {
           state.isScrollDown = scrollTop > 0
         }, 100)
       })

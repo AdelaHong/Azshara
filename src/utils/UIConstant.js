@@ -7,5 +7,6 @@ export default {
     DEBUG: 5,
     OFF: 6
   },
-  MENU_BASIC: 'menuBasic'
+  MENU_BASIC: 'menuBasic',
+  USER_LOGIN: 'userLogin'
 }

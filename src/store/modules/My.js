@@ -4,7 +4,7 @@ const state = {
     secondMenu: [
       {
         id: 'FavoriteVideo',
-        name: 'menu.favoriteVieo',
+        name: 'menu.favoriteVideo',
         iconName: 'video'
       },
       {
@@ -66,6 +66,11 @@ const state = {
   ],
   currentMenuId: ''
 }
+const getters = {
+  featuresMenus: state => state.menuInfoKeys
+    .map(item => item.secondMenu)
+    .flat()
+}
 
 const mutations = {
   SET_MENU_ACTIVE (state, id) {
@@ -73,12 +78,12 @@ const mutations = {
   }
 }
 
-const actions = {
-}
+const actions = {}
 
 export default {
   namespaced: true,
   state,
+  getters,
   mutations,
   actions
 }
