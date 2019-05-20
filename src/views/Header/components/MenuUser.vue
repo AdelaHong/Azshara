@@ -1,20 +1,20 @@
 <template>
   <div class="c-user-drop-down">
     <template v-if="!isLogin">
-      <mo-button type="mini" @click="handleClick(UIConstant.USER_LOGIN)">{{$t('menu.loginButtonText')}}</mo-button>
+      <mo-button type="mini" @click.stop="handleClick(UIConstant.USER_LOGIN)">{{$t('menu.loginButtonText')}}</mo-button>
     </template>
     <template v-else>
-      <div class="c-user-drop-down__user-main" @click="handleShowMore">
+      <div class="c-user-drop-down__user-main" @click.stop="handleShowMore">
         <img class="avatar" :src="userInfo.imgUrl" :alt="userInfo.imgUrl">
-        <div class="user-name">{{userInfo.userId}}</div>
-        <mo-icon class="arrow-icon" name="arrow-down-s" type="fill" :size="16"></mo-icon>
+        <div class="user-name">{{userInfo.username}}</div>
       </div>
       <div class="c-user-drop-down__top-arrow" v-show="menus.length && isShowFeatureMenu"></div>
       <ul class="c-user-drop-down__submenu" v-show="menus.length && isShowFeatureMenu">
-        <li class="user-id">
-          <span>{{'user id: d12348475322232'}}</span>
+        <li class="user-id" @click.stop="handleClick(UIConstant.MENU_BASIC)">
+          <span>{{$t('menu.userId')}} {{userInfo.userId}}</span>
         </li>
-        <li class="feature-item" v-for="(menu,index) of menus" :key="index">
+        <li class="feature-item" v-for="(menu,index) of menus" :key="index"
+            @click.stop="handleClick(menu.id)">
           <mo-icon class="icon" :name="menu.iconName" type="fill" :size="16"></mo-icon>
           <span class="item-name">{{$t(menu.name)}}</span>
         </li>
@@ -25,6 +25,7 @@
 
 <script>
 import UIConstant from '@utils/UIConstant'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'menuUser',
@@ -43,15 +44,22 @@ export default {
     }
   },
   data: () => ({
-    UIConstant,
-    isShowFeatureMenu: false
+    UIConstant
   }),
+  computed: {
+    ...mapState('HEADER', {
+      isShowFeatureMenu: s => s.isShowFeatureMenu
+    })
+  },
   methods: {
+    ...mapMutations('HEADER', {
+      'changeFeatureMenu': 'CHANGE_FEATURE_MENU'
+    }),
     handleClick (constant) {
       this.$emit('click', constant)
     },
     handleShowMore () {
-      this.isShowFeatureMenu = true
+      this.changeFeatureMenu(true)
     }
   }
 }
@@ -59,6 +67,7 @@ export default {
 
 <style scoped lang="scss">
   @include component(user-drop-down) {
+    margin-left: unit(40);
     cursor: pointer;
     position: relative;
     .mok-button--mini {
@@ -82,53 +91,58 @@ export default {
         max-width: unit(100);
         @include text-overflow;
       }
-      .arrow-icon {
-        fill: $C35;
-      }
     }
-    @include e(top-arrow){
+    @include e(top-arrow) {
       border: 8px solid transparent;
       border-bottom: 8px solid $C12;
       width: 0;
       height: 0;
       position: absolute;
       top: unit(32);
-      left:unit(72);
+      left: unit(62);
       z-index: 4;
     }
-    @include e(submenu){
+    @include e(submenu) {
       width: unit(218);
       position: absolute;
       background-color: $C12;
       top: unit(48);
-      left: unit(-32);
+      left: unit(-40);
       @include M(5);
       @include rc(1);
       z-index: 4;
       .user-id {
         @include T(32, $C31);
         @include text-overflow;
-        margin: unit(20) unit(20) unit(10) unit(20);
+        padding: unit(20) unit(20) unit(10) unit(20);
+
+        &:hover {
+          background-color: $C03;
+        }
       }
-      .feature-item{
+      .feature-item {
         height: unit(32);
         @include T(32, $C35);
         text-indent: unit(20);
         display: flex;
         align-items: center;
-        &:last-child{
+
+        &:last-child {
           margin-bottom: unit(20);
         }
+
         &:hover {
           background-color: $C03;
           color: $C31;
           fill: $C31;
         }
-        .icon{
+
+        .icon {
           margin-left: unit(20);
           fill: $C35;
         }
-        .item-name{
+
+        .item-name {
 
         }
       }

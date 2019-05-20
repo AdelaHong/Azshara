@@ -14,17 +14,12 @@
           <router-link class="item" :to="item.url">{{$t(item.name)}}</router-link>
         </li>
       </ul>
-      <div class="moki-header__input">
-        <mo-input type="search" :isError="false" placeholder="默认设置" v-model="searchKey"></mo-input>
-      </div>
+      <menu-search></menu-search>
       <div class="moki-header__history">
         <mo-icon name="time" :size="20"></mo-icon>
         <span class="text">{{$t('menu.history')}}</span>
       </div>
-      <div class="moki-header__avatar">
-        <menu-user @click="targetAction" :isLogin="true" :userInfo="userInfo" :menus="
-featuresMenus()"></menu-user>
-      </div>
+      <menu-user @click="targetAction" :isLogin="true" :userInfo="userInfo" :menus="featuresMenus()"></menu-user>
       <div class="moki-header__lang">中文</div>
     </div>
   </nav>
@@ -33,18 +28,21 @@ featuresMenus()"></menu-user>
 <script>
 import { mapState, mapMutations, mapGetters } from 'vuex'
 import MenuUser from './components/MenuUser.vue'
+import MenuSearch from './components/MenuSearch.vue'
 import UIConstant from '@utils/UIConstant'
 
 export default {
   name: 'headerWrap',
   components: {
-    MenuUser
+    MenuUser,
+    MenuSearch
   },
   data: () => ({
     searchKey: '',
     userInfo: {
       imgUrl: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1122649470,955539824&fm=27&gp=0.jpg',
-      userId: '8902983-34854785'
+      userId: '8902983-34854785',
+      username: 'Login'
     }
   }),
   computed: {
@@ -61,7 +59,8 @@ export default {
     }),
     ...mapMutations('HEADER', {
       setMenuStatus: 'setMenuStatus',
-      scrollListener: 'SCROLL_LISTENER'
+      scrollListener: 'SCROLL_LISTENER',
+      changeFeatureMenu: 'CHANGE_FEATURE_MENU'
     }),
     ...mapMutations('DIALOG', {
       switchLoginDialog: 'CHANGE_LOGIN_DIALOG_STATUS'
@@ -70,13 +69,20 @@ export default {
       this.setMenuStatus(false)
     },
     targetAction (evt) {
-      if (UIConstant.USER_LOGIN === evt) {
-        this.switchLoginDialog(true)
+      this.changeFeatureMenu(false)
+      switch (evt) {
+        case UIConstant.USER_LOGIN:
+          break
+        case UIConstant.MENU_BASIC:
+          break
       }
     }
   },
   mounted () {
     this.scrollListener()
+    document.body.addEventListener('click', () => {
+      this.changeFeatureMenu(false)
+    })
   }
 }
 </script>
@@ -293,13 +299,6 @@ export default {
             }
           }
         }
-
-        @include e(input) {
-          display: flex;
-          align-items: center;
-          margin-right: unit(10);
-        }
-
         @include e(histroy) {
           display: flex;
           align-items: center;
@@ -351,11 +350,6 @@ export default {
             margin-left: unit(10);
           }
         }
-
-        @include e(avatar) {
-          margin-left: unit(40);
-        }
-
         @include e(lang) {
           margin-left: unit(40);
         }

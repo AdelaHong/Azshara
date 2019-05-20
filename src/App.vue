@@ -2,7 +2,6 @@
   <div id="app">
     <!-- 广告组件 -->
     <banner v-if="isShowBanner" :views="promoViews"/>
-
     <header>
       <header-wrap></header-wrap>
     </header>

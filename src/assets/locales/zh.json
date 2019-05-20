@@ -15,7 +15,8 @@
     "deviceName":"设备名称",
     "setting":"设置",
     "logout":"注销",
-    "loginButtonText": "登录"
+    "loginButtonText": "登录",
+    "userId": "用户ID:"
   },
   "broadcast":{
     "hotTitle":"推荐栏目",

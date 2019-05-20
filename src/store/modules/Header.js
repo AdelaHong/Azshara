@@ -5,6 +5,7 @@ export default {
     isShowMenu: false,
     isScrollDown: false,
     isSpecialWeb: false,
+    isShowFeatureMenu: false,
     headerList: [
       {
         name: 'menu.home',
@@ -27,7 +28,9 @@ export default {
     setMenuStatus (state, status) {
       state.isShowMenu = status
     },
-
+    CHANGE_FEATURE_MENU (state, status) {
+      state.isShowFeatureMenu = status
+    },
     SCROLL_LISTENER (state) {
       let debounce
       document.addEventListener('scroll', () => {
