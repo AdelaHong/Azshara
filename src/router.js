@@ -42,7 +42,7 @@ const router = new Router({
       children: [{
         path: '/user-info',
         name: 'userInfo',
-        component: () => import(/* webpackChunkName: "UserInfo" */ './views/My/UserInfo.vue')
+        component: () => import(/* webpackChunkName: "userInfo" */ './views/My/UserInfo.vue')
       }]
 
     },

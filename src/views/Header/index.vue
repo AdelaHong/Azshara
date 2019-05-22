@@ -60,7 +60,8 @@ export default {
     ...mapMutations('HEADER', {
       setMenuStatus: 'setMenuStatus',
       scrollListener: 'SCROLL_LISTENER',
-      changeFeatureMenu: 'CHANGE_FEATURE_MENU'
+      changeFeatureMenu: 'CHANGE_FEATURE_MENU',
+      changeSearchResult: 'CHANGE_SEARCH_RESULT'
     }),
     ...mapMutations('DIALOG', {
       switchLoginDialog: 'CHANGE_LOGIN_DIALOG_STATUS'
@@ -74,6 +75,7 @@ export default {
         case UIConstant.USER_LOGIN:
           break
         case UIConstant.MENU_BASIC:
+          this.$router.push({ name: 'userInfo' })
           break
       }
     }
@@ -82,6 +84,7 @@ export default {
     this.scrollListener()
     document.body.addEventListener('click', () => {
       this.changeFeatureMenu(false)
+      this.changeSearchResult(false)
     })
   }
 }
@@ -117,11 +120,6 @@ export default {
           flex: (1/3);
           line-height: unit(60);
         }
-
-        .search-menu {
-          flex: (1/3);
-        }
-
         .logo {
           flex: (1/3);
           line-height: unit(60);

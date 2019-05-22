@@ -6,6 +6,7 @@ export default {
     isScrollDown: false,
     isSpecialWeb: false,
     isShowFeatureMenu: false,
+    isShowSearchResult: false,
     headerList: [
       {
         name: 'menu.home',
@@ -30,6 +31,9 @@ export default {
     },
     CHANGE_FEATURE_MENU (state, status) {
       state.isShowFeatureMenu = status
+    },
+    CHANGE_SEARCH_RESULT (state, status) {
+      state.isShowSearchResult = status
     },
     SCROLL_LISTENER (state) {
       let debounce
