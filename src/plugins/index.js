@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import axios from './Axios'
-import mokimo from 'moko'
+import mokimo from 'mokimo'
 import dayjs from './Dayjs'
 import remixicon from 'remixicon/fonts/remixicon.symbol.svg'
-import 'moko/dist/mokimo.css'
+import 'mokimo/dist/mokimo.css'
 
 Vue.use(axios, {
   baseURL: process.env.VUE_APP_BASE_API,

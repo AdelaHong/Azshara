@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "dayjs": "^1.8.13",
-    "moko": "file:moko-0.1.6.tgz",
+    "mokimo": "^0.1.1",
     "remixicon": "^1.1.2",
     "vue": "^2.6.10",
     "vue-i18n": "^8.10.0",

@@ -78,6 +78,7 @@ export default {
       border-radius: unit(3);
       position: absolute;
       padding-top: unit(20);
+      padding-bottom: unit(20);
       top: unit(60);
       left: unit(-17);
       .lists {
