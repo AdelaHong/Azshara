@@ -91,10 +91,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  /*
-  移动优先开发原则
-  */
-
   @include b(header) {
     height: unit(60);
     width: 100%;

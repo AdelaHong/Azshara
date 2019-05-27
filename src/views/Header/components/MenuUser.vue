@@ -98,7 +98,7 @@ export default {
       width: 0;
       height: 0;
       position: absolute;
-      top: unit(32);
+      top: unit(42);
       left: unit(62);
       z-index: 4;
     }
@@ -106,7 +106,7 @@ export default {
       width: unit(218);
       position: absolute;
       background-color: $C12;
-      top: unit(48);
+      top: unit(58);
       left: unit(-40);
       @include M(5);
       @include rc(1);

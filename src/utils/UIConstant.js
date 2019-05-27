@@ -8,5 +8,6 @@ export default {
     OFF: 6
   },
   MENU_BASIC: 'menuBasic',
-  USER_LOGIN: 'userLogin'
+  USER_LOGIN: 'userLogin',
+  SHOW_VIEW: 7
 }

@@ -66,7 +66,7 @@
 </template>
 <script>
 import Poster from './Poster.vue'
-const SHOW_VIEW = 7
+import UIConstant from '@utils/UIConstant'
 export default {
   name: 'recommend',
   components: {
@@ -94,15 +94,14 @@ export default {
       let posterSize = this.posters.length
       let tiles = []
       if (posterSize > 0) {
-        console.log(posterSize)
         for (let i = 0; i < this.groupSize; i++) {
           tiles.push({
-            bigTile: this.posters[i * SHOW_VIEW],
+            bigTile: this.posters[i * UIConstant.SHOW_VIEW],
             mediumTiles: [
-              this.posters.slice(i * SHOW_VIEW + 1, i * SHOW_VIEW + 3),
-              this.posters.slice(i * SHOW_VIEW + 3, i * SHOW_VIEW + 5)
+              this.posters.slice(i * UIConstant.SHOW_VIEW + 1, i * UIConstant.SHOW_VIEW + 3),
+              this.posters.slice(i * UIConstant.SHOW_VIEW + 3, i * UIConstant.SHOW_VIEW + 5)
             ],
-            smallTiles: this.posters.slice(i * SHOW_VIEW + 5, i * SHOW_VIEW + 7)
+            smallTiles: this.posters.slice(i * UIConstant.SHOW_VIEW + 5, i * UIConstant.SHOW_VIEW + 7)
           })
         }
       }
@@ -112,7 +111,7 @@ export default {
       return this.moveLeft / 16 + 'rem'
     },
     groupSize () {
-      return Math.ceil(this.posters.length / SHOW_VIEW) || 0
+      return Math.ceil(this.posters.length / UIConstant.SHOW_VIEW) || 0
     }
   },
   methods: {

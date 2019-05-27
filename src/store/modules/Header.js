@@ -44,6 +44,8 @@ export default {
         clearTimeout(debounce)
         debounce = setTimeout(() => {
           state.isScrollDown = scrollTop > 0
+          state.isShowFeatureMenu = false
+          state.isShowSearchResult = false
         }, 100)
       })
     }

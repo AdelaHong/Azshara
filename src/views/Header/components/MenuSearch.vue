@@ -1,10 +1,11 @@
 <template>
   <div class="c-search">
-    <mo-input type="search" :isError="false" placeholder="默认设置" v-model="searchKey" @click.stop="handleFocus"></mo-input>
+    <mo-input type="search" :isError="false" placeholder="默认设置" v-model="searchKey"
+              @click.stop="handleFocus"></mo-input>
     <div class="c-search__results" v-show="isShowSearchResult">
       <div class="top-arrow"></div>
       <ul class="lists">
-        <li class="recommend-item">
+        <li class="recommend-item" v-show="isShowRecommend">
           <img class="poster-main"
                src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1122649470,955539824&fm=27&gp=0.jpg"
                alt="">
@@ -24,10 +25,12 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'MenuSearch',
   data: () => ({
     searchKey: '',
+    _cacheSearchKey: '',
     results: [
       {
         id: '321312',
@@ -38,8 +41,18 @@ export default {
       }, {
         id: '321312',
         name: 'casdsdada'
-      }]
+      }],
+    isShowRecommend: false
   }),
+  watch: {
+    searchKey (newQuestion) {
+      this._cacheSearchKey = newQuestion
+      this.debouncedGetAnswer()
+    }
+  },
+  created () {
+    this.debouncedGetAnswer = this.$_.debounce(this.getAnswer, 500)
+  },
   computed: {
     ...mapState('HEADER', {
       isShowSearchResult: s => s.isShowSearchResult
@@ -49,6 +62,9 @@ export default {
     ...mapMutations('HEADER', {
       changeSearchResult: 'CHANGE_SEARCH_RESULT'
     }),
+    getAnswer () {
+      this.isShowRecommend = this.$_.isEmpty(this._cacheSearchKey)
+    },
     handleClick () {
     },
     handleFocus () {
